@@ -1,6 +1,6 @@
 package se.iths.philip.numbertotext;
 
-public class NumberToText {
+public class NumberToTextMain {
     public static void main(String[] args) {
         inputDigit();
     }
@@ -12,12 +12,24 @@ public class NumberToText {
         System.out.println(result);
         System.out.println("Längden är " + inputLength);
 
-        int single = input % 10;
+        inputArray(input);
+        /*int single = input % 10;
         int decimal = (input % 100) / 10;
         int centimal = input / 100;
         int millimal = input / 1000;
         //int miljon = input / 1000000;
-        //int miljard = input / 1000000000;
+        //int miljard = input / 1000000000;*/
+    }
+
+    public static void inputArray(int input) {
+        String numderAsString = String.valueOf(input);
+        int[] digits = new int[numderAsString.length()];
+        for (int i = 0; i < numderAsString.length(); i++) {
+            digits[i] = Character.getNumericValue(numderAsString.charAt(i));
+        }
+        for (int digit : digits) {
+            System.out.print(digit + " ");
+        }
     }
 
     static void numberZero() {
@@ -46,17 +58,17 @@ public class NumberToText {
     }
 
     static void millimalNumber() {
-        //0_000
+        //0_000 - 00_000
         String millimalNumber = "Tusen";
     }
 
     static void miljonNumber() {
-        //0_000_000
+        //0_000_000 - 000_000_000
         String miljonNumber = "Miljon";
     }
 
     static void miljardNumber() {
-        //0_000_000_000
+        //0_000_000_000 - 000_000_000_000
         String miljardNumber = "Miljard";
     }
 }
