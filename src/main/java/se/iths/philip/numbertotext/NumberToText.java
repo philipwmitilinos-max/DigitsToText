@@ -11,6 +11,13 @@ public class NumberToText {
         int inputLength = String.valueOf(input).length();
         System.out.println(result);
         System.out.println("Längden är " + inputLength);
+
+        int single = input % 10;
+        int decimal = (input % 100) / 10;
+        int centimal = input / 100;
+        int millimal = input / 1000;
+        //int miljon = input / 1000000;
+        //int miljard = input / 1000000000;
     }
 
     static void numberZero() {
@@ -39,17 +46,17 @@ public class NumberToText {
     }
 
     static void millimalNumber() {
-        //0000
+        //0_000
         String millimalNumber = "Tusen";
     }
 
     static void miljonNumber() {
-        //0000000
+        //0_000_000
         String miljonNumber = "Miljon";
     }
 
     static void miljardNumber() {
-        //000000000
+        //0_000_000_000
         String miljardNumber = "Miljard";
     }
 }
