@@ -3,6 +3,14 @@ package se.iths.philip.numbertotext;
 public class NameOfDigit {
     private int nameOfDigit;
 
+    public void setNameOfDigit(int nameOfDigit) {
+        this.nameOfDigit = nameOfDigit;
+    }
+
+    public int getNameOfDigit() {
+        return nameOfDigit;
+    }
+
     public static void numberZero() {
         //0
         String numberZero = "Noll";
