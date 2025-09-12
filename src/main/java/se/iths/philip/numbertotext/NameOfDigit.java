@@ -1,7 +1,7 @@
 package se.iths.philip.numbertotext;
 
 public class NameOfDigit {
-    private String name;
+    private int nameOfDigit;
 
     public static void numberZero() {
         //0

@@ -6,7 +6,7 @@ public class NumberToTextMain {
     }
 
     public static void inputDigit() {
-        int input = 1234;
+        int input = 123456789;
         String result = Integer.toString(input);
         int inputLength = String.valueOf(input).length();
         System.out.println(result);
@@ -18,12 +18,12 @@ public class NumberToTextMain {
     }
 
     public static void divedInput(int input) {
-        int single = input % 10;
+        int miljard = (input % 1000000000) / 100000000;
+        int miljon = (input % 100000000) / 100000;
+        int millimal = (input % 100000) / 1000;
+        int centimal = (input % 1000) / 100;
         int decimal = (input % 100) / 10;
-        int centimal = input / 100;
-        int millimal = input / 1000;
-        int miljon = input / 1000000;
-        int miljard = input / 1000000000;
+        int single = input % 10;
         System.out.println("Miljard tal: " + miljard);
         System.out.println("Miljon tal: " + miljon);
         System.out.println("Tusen tal: " + millimal);
@@ -42,5 +42,4 @@ public class NumberToTextMain {
             System.out.print(digit + " ");
         }
     }
-
 }
