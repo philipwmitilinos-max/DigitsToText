@@ -1,20 +1,31 @@
 package se.iths.philip.numbertotext;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class NumberToTextMain {
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         inputDigit();
     }
 
     public static void inputDigit() {
-        int input = 123456789;
-        String result = Integer.toString(input);
-        int inputLength = String.valueOf(input).length();
-        System.out.println(result);
-        System.out.println("Längden är " + inputLength);
+        try {
+            System.out.print("Skriv in ett heltal på max nio siffror: ");
+            int input = scanner.nextInt();
+            String result = Integer.toString(input);
+            int inputLength = String.valueOf(input).length();
+            System.out.println(result);
+            System.out.println("Längden är " + inputLength);
 
-        inputArray(input);
-        System.out.println(" ");
-        divedInput(input);
+            inputArray(input);
+            System.out.println(" ");
+            divedInput(input);
+        } catch (InputMismatchException e) {
+            System.out.println("Fel input");
+        }
+
     }
 
     public static void divedInput(int input) {
