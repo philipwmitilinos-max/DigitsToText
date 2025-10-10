@@ -18,7 +18,7 @@ public class NameOfDigit {
 
     public static void singelNumber() {
         //0
-        String[] singleNumber = {"Ett", "Tre", "Fyra", "Fem", "Sex", "Sju", "Åtta", "Nio"};
+        String[] singleNumber = {"Ett", "Två", "Tre", "Fyra", "Fem", "Sex", "Sju", "Åtta", "Nio"};
     }
 
     public static void decimalNumberSet1() {
@@ -46,8 +46,8 @@ public class NameOfDigit {
         String miljonNumber = "Miljon";
     }
 
-    public static void miljardNumber() {
-        //0_000_000_000 - 000_000_000_000
-        String miljardNumber = "Miljard";
-    }
+//    public static void miljardNumber() {
+//        //0_000_000_000 - 000_000_000_000
+//        String miljardNumber = "Miljard";
+//    }
 }
