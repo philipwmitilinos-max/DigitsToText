@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 public class NumberToTextMain {
     static Scanner scanner = new Scanner(System.in);
+    private static final String[] ENKELTAL = {
+            "", "ett", "två", "tre", "fyra", "fem", "sex", "sju", "åtta", "nio",
+            "tio", "elva", "tolv", "tretton", "fjorton", "femton", "sexton", "sjutton", "arton", "nitton"
+    };
+    private static final String[] TIOTAL = {
+            "", "", "tjugo", "trettio", "fyrtio", "femtio", "sextio", "sjuttio", "åttio", "nittio"
+    };
 
     public static void main(String[] args) {
         inputDigit();
@@ -15,63 +22,47 @@ public class NumberToTextMain {
             System.out.print("Skriv in ett heltal på max nio siffror: ");
             int input = scanner.nextInt();
             scanner.nextLine();
-//            String result = Integer.toString(input);
-//            int inputLength = String.valueOf(input).length();
-//            System.out.println(result);
-            System.out.println("Längden är " + input);
+            if (input < 0) {
+                System.out.println("minus " + convertToText(-input));
+            } else {
+                System.out.println(input + " = " + convertToText(input));
+            }
 
-            inputArray(input);
-            System.out.println(" ");
-            divedInput(input);
         } catch (InputMismatchException e) {
             System.err.println("Fel input " + e.getMessage());
         }
 
     }
 
-    public static void divedInput(int input) {
-        //int miljard = (input % 1_000_000_000) / 100_000_000;
-        int miljon = (input % 1_000_000_000) / 1_000_000;
-        int millimal = (input % 1_000_000) / 1_000;
-        int centimal = (input % 1_000) / 100;
-        int decimal = (input % 100) / 10;
-        int single = input % 10;
-        //System.out.println("Miljard tal: " + miljard);
-        System.out.println("Miljon tal: " + miljon);
-        System.out.println("Tusen tal: " + millimal);
-        System.out.println("Hundra tal: " + centimal);
-        System.out.println("Tio tal: " + decimal);
-        System.out.println("En tal: " + single);
-        divedMiljon(miljon);
-        divedMilli(millimal);
-    }
-
-    public static void divedMiljon(int miljon) {
-        int centiMiljon = (miljon % 1000) / 100;
-        int deciMiljon = (miljon % 100) / 10;
-        int singleMiljon = miljon % 10;
-        System.out.println("Hundra miljoner: " + centiMiljon * 100_000_000);
-        System.out.println("Tio miljoner: " + deciMiljon * 10_000_000);
-        System.out.println("Miljon: " + singleMiljon * 1_000_000);
-    }
-
-    public static void divedMilli(int millimal) {
-        int centMillimal = (millimal % 1000) / 100;
-        int deciMillimal = (millimal % 100) / 10;
-        int singleMillimal = millimal % 10;
-        System.out.println("Hundra tusen: " + centMillimal * 100_000);
-        System.out.println("Tio tusen: " + deciMillimal * 10_000);
-        System.out.println("Tusen: " + singleMillimal * 1_000);
-    }
-
-    public static void inputArray(int input) {
-        String numderAsString = String.valueOf(input);
-        int[] digits = new int[numderAsString.length()];
-        for (int i = 0; i < numderAsString.length(); i++) {
-            digits[i] = Character.getNumericValue(numderAsString.charAt(i));
+    public static String convertToText(int tal) {
+        if (tal == 0) return "noll";
+        if (tal < 20) return ENKELTAL[tal];
+        if (tal < 100) {
+            int tiotal = tal / 10;
+            int enheter = tal % 10;
+            return TIOTAL[tiotal] + (enheter > 0 ? ENKELTAL[enheter] : "");
         }
-        for (int digit : digits) {
-            System.out.print(digit + " ");
+        if (tal < 1000) {
+            int hundratal = tal / 100;
+            int rest = tal % 100;
+            String resultat = (hundratal == 1 ? "etthundra" : ENKELTAL[hundratal] + "hundra");
+            if (rest > 0) resultat += convertToText(rest);
+            return resultat;
         }
+        if (tal < 1_000_000) {
+            int tusental = tal / 1000;
+            int rest = tal % 1000;
+            String resultat = (tusental == 1 ? "ettusen" : convertToText(tusental) + "tusen");
+            if (rest > 0) resultat += convertToText(rest);
+            return resultat;
+        }
+        if (tal < 1_000_000_000) {
+            int miljon = tal / 1_000_000;
+            int rest = tal % 1_000_000;
+            String resultat = (miljon == 1 ? "enmiljon" : convertToText(miljon) + "miljoner");
+            if (rest > 0) resultat += convertToText(rest);
+            return resultat;
+        }
+        return "Tal för stort (max 999 999 999 i denna version)";
     }
 }
